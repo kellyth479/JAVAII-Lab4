@@ -15,7 +15,7 @@ public class Functions {
             merge(data, beginning, middle, ending);
         }
     }
-    
+
     private static void merge(int[] data, int beginning, int middle, int ending){
 
         int leftSize = middle - beginning + 1;
@@ -61,11 +61,34 @@ public class Functions {
     }
 
     public static int binarySearch(int[]data, int key){
-        return key;
+
+        return binarySearch(data, key, 0, data.length-1);
+    }
+
+    public static int binarySearch(int[]data, int key, int beginning, int ending){
+
+        if(beginning > ending){
+            return -1 ;
+        }
+
+        int middle = (beginning + ending)/2;
+        if(data[middle] == key){
+//            System.out.print("Middle: ");
+//            System.out.println(middle);
+//            System.out.print("data[Middle]: ");
+//            System.out.println(data[middle]);
+            return middle;
+        }else if(key < data[middle]){
+            return binarySearch(data, key, beginning, middle - 1);
+        }else{
+            return binarySearch(data, key, middle + 1, ending);
+        }
+
     }
 
     public static void printMe(int[] data){
         for(int i = 0; i < data.length; i++){
+            System.out.print("Index[" + i + "] : ");
             System.out.println(data[i]);
         }
     }
